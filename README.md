@@ -14,16 +14,18 @@ The app's code defines the data directly inside the component, which isn't best 
 At the moment, the binding is to an array of strings. In real applications, most bindings are to more specialized objects.
 To convert this binding to use specialized objects, turn the array of hero names into an array of Hero objects. For that you'll need a Hero class:
 
-hero.js
+
 ```javascript
 export class Hero {
   constructor(
     public id: number,
     public name: string) { }
 }
-```
 
-app.component.ts
+```
+hero.js
+
+
 ```javascript
 import { Component } from '@angular/core';
 
@@ -47,4 +49,20 @@ export class AppComponent {
   constructor() {}
 
 }
+
 ```
+app.component.ts
+
+```html
+<h1>{{title}}</h1>
+<h2>My favourite hero is: {{myHero}}</h2>
+<p>Heroes:</p>
+<ul>
+  <li *ngFor="let hero of heroes">
+    {{hero.name}}
+  </li>
+</ul>
+<p *ngIf="heroes.length > 3">There are many heroes!</p>
+
+```
+app.component.html
