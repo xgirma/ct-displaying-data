@@ -23,7 +23,7 @@ export class Hero {
 }
 
 ```
-hero.js
+_hero.js_
 
 
 ```javascript
@@ -51,11 +51,11 @@ export class AppComponent {
 }
 
 ```
-app.component.ts
+_app.component.ts_
 
 ```html
 <h1>{{title}}</h1>
-<h2>My favourite hero is: {{myHero}}</h2>
+<h2>My favourite hero is: {{myHero.name}}</h2>
 <p>Heroes:</p>
 <ul>
   <li *ngFor="let hero of heroes">
@@ -65,4 +65,4 @@ app.component.ts
 <p *ngIf="heroes.length > 3">There are many heroes!</p>
 
 ```
-app.component.html
+_app.component.html_
