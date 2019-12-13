@@ -1,7 +1,20 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
+const manyHeroes = [
+  {id: 1, name: 'Windstorm'},
+  {id: 2, name: 'Bombasto'},
+  {id: 3, name: 'Magneta'},
+  {id: 4, name: 'Tornado'}];
+
+const fewHeroes = [
+  {id: 3, name: 'Bombasto'}];
+
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let compiled: any;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -10,22 +23,34 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    compiled = fixture.debugElement.nativeElement;
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ct-displaying-data'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ct-displaying-data');
+  it(`heroes > 3`, async () => {
+    compiled.heroes = manyHeroes;
+    fixture.detectChanges();
+
+    await fixture.whenStable().then(() => {
+      const message = compiled.querySelector('#message').textContent;
+      expect(message).toEqual('There are many heroes!');
+    });
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('heroes < 3', async () => {
+    compiled.heroes = fewHeroes;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ct-displaying-data app is running!');
+
+    await fixture.whenStable().then(() => {
+      expect(compiled.querySelector('#message').length).toBeUndefined();
+    });
   });
 });
