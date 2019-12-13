@@ -1,4 +1,5 @@
 # Component & Template: Displaying Data
+[![Build Status](https://travis-ci.com/xgirma/ct-displaying-data.svg?branch=master)](https://travis-ci.com/xgirma/ct-displaying-data)
 
 You can display data by binding controls in an HTML template to properties of a component.
 
@@ -66,3 +67,5 @@ _app.component.ts_
 
 ```
 _app.component.html_
+
+Source: [Angular Documentation](https://angular.io/guide/displaying-data)
