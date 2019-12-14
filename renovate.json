@@ -1,5 +1,9 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "major": {
+    "automerge": false
+  },
+  "ignoreDeps": ["typescript"]
 }
